@@ -1,0 +1,12 @@
+{
+    "name": "nodejs",
+    "version": "1.0.0",
+    "description": "practice",
+    "main": "demo_app.js",
+    "scripts": {},
+    "author": "kishan",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
+}
