@@ -1,15 +1,8 @@
 const http = require('http');
-const fs = require('fs');
-
-http
-    .createServer((req, res) => {
-        // const data = fs.readFileSync('./folder/sub-folder/big-text.txt', 'utf-8');
-        // res.end(data);
-
-        const readStream = fs.createReadStream('./folder/sub-folder/big-text.txt', 'utf-8');
-        readStream.on('open', () => {
-            readStream.pipe(res);
-        });
-        readStream.on('close', (err) => { });
-    })
-    .listen(4200);
+http.createServer((req, res) => {
+    console.log(req.method);
+    console.log(req.url);
+    res.writeHead(200, 'KISHAN', { 'content-type': 'text/html' });
+    res.write(`<h1>Kishan</h1>`);
+    res.end();
+}).listen(5000);
