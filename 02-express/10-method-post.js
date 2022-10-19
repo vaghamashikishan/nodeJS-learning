@@ -1,33 +1,21 @@
-const express = require('express')
-const app = express()
-const port = 5000
-const { people } = require('./data');
+const express = require("express");
+const app = express();
+const port = 5000;
 
-app.use(express.static('./02-express/methods-public'))
-app.use(express.urlencoded({ extended: false }))
-app.get('/', (req, res) => {
-    res.json(people)
-})
+const people = require('./routes/people');
+const auth = require('./routes/auth');
 
-app.post('/login', (req, res) => {
-    const { name } = req.body;
-    if (name) {
-        return res.status(200).send(`Hello ${name}`)
-    }
-    res.status(401).send(`Please provide name`)
-})
+app.use(express.static("./02-express/methods-public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.get('/api/people', (req, res) => {
-    if (people) {
-        return res.status(200).json({ data: people });
-    }
-})
+// for express.router
+app.use('/api/people', people);
+app.use('/login', auth);
 
-app.post('/api/people', (req, res) => {
-    const { name } = req.body;
-    if (name) {
-        return res.status(200).send(`Hello ${name}`)
-    }
-    res.status(401).send(`Please provide name`)
-})
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.get("/", (req, res) => {
+    res.json(people);
+});
+
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
