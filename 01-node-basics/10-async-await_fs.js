@@ -1,4 +1,3 @@
-
 const { readFile, writeFile } = require('fs').promises;
 
 async function doTask() {
