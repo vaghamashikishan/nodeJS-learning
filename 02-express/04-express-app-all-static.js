@@ -1,13 +1,13 @@
-// For this static method we have to put 'index.html' in public folder too.
+// For this static method we have to put 'index.html' in navbar-app folder too.
 
 const express = require('express')
 const path = require('path');
 const app = express()
 
-app.use(express.static('./02-express/public'));
+app.use(express.static('./navbar-app'));
 
 // app.get('/', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, './navbar-app/index.html'));
+//     res.sendFile(path.resolve('./navbar-app/index.html'));
 // })
 
 app.all('*', (req, res) => {

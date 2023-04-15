@@ -19,8 +19,7 @@ app.get('/products', (req, res) => {
 app.get('/products/:id', (req, res) => {
     console.log(req.params.id);
     const singleProduct = products.find(product => product.id === +req.params.id);
-    if (!singleProduct) return res.status(404).send(`<h1>Product not found!</h1><a href="/">home page</a>`)
-    res.json(singleProduct);
+    return singleProduct === undefined ? res.status(404).send(`<h1>Product not found!</h1><a href="/">home page</a>`) : res.json(singleProduct);
 })
 
 app.get('/products/:id/reviews/:reviewID', (req, res) => {
@@ -29,7 +28,7 @@ app.get('/products/:id/reviews/:reviewID', (req, res) => {
 })
 
 // Query
-app.get('/v1/query', (req, res) => {
+app.get('/products/query', (req, res) => {
     let newPeople = [...people];
     const { search, limit } = req.query;
     console.log(limit);

@@ -6,7 +6,7 @@ const people = require('./routes/people');
 const auth = require('./routes/auth');
 
 // static middleware, all static documents is in 'methods-public' folder, and it will be served from there
-app.use(express.static("./02-express/methods-public"));
+app.use(express.static("./methods-public"));
 // parse request data in urlelcoded format
 app.use(express.urlencoded({ extended: false }));
 // parse request data in JSON format
@@ -16,9 +16,9 @@ app.use(express.json());
 app.use('/api/people', people);
 app.use('/login', auth);
 
-app.get("/", (req, res) => {
-    res.json(people);
-});
+// app.get("/", (req, res) => {
+// // express.static() method will automatically use HTML file from that folder
+// });
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
